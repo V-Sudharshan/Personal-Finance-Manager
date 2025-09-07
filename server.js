@@ -6,42 +6,36 @@ const colors = require("colors");
 const connectDb = require("./config/connectDb");
 const path = require("path");
 
-// ✅ Connect to MongoDB
+console.log("Loaded PORT:", process.env.PORT); // Debugging Log
+console.log("Loaded MONGO_URL:", process.env.MONGO_URL); // Debugging Log
+
+// Connect to Database
 connectDb();
 
 const app = express();
 
-// ✅ Middlewares
+// Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
-
-// ✅ CORS
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "*", // Use CLIENT_URL in Render env
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
 
-// ✅ API Routes
+// ✅ API Routes first
 app.use("/api/v1", require("./routes/transactionRoutes"));
 app.use("/api/v1/users", require("./routes/userRoute"));
 
-// ✅ Serve React frontend (production only)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "./client/build")));
+// ✅ React build (only in production)
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
-  });
-} else {
-  app.get("/", (req, res) => {
-    res.send("API running in development mode...");
-  });
-}
-
-// ✅ Start Server
+// Server Port
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () =>
-  console.log(`🚀 Server running on port ${PORT}`.cyan.bold)
+  console.log(`Server running on port ${PORT}`.cyan.bold)
 );
