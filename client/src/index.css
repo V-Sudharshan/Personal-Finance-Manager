@@ -1,0 +1,105 @@
+/* Reset styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure the main content fills the screen */
+.content {
+  min-height: calc(100vh - 60px); /* Adjust based on header/footer height */
+  padding: 20px;
+}
+
+/* Common styles for Login & Register pages */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full viewport height */
+  background-color: #f4f4f4;
+}
+
+/* Form container styling */
+.auth-page form {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px; /* Same width for both pages */
+}
+
+/* Style for buttons */
+.auth-page button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.auth-page button:hover {
+  background-color: #0056b3;
+}
+
+/* Links inside the form */
+.auth-page a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.auth-page a:hover {
+  text-decoration: underline;
+}
+
+/* Filters section */
+.filters {
+  display: flex;
+  align-items: center; /* Fixed typo: 'centre' -> 'center' */
+  justify-content: space-between;
+  padding: 15px 20px;
+  box-shadow: 0 0 3px gray;
+  margin-bottom: 20px; /* Add space below filters */
+}
+
+/* Switch icons container */
+.switch-icons {
+  border: 1px solid rgba(0, 0, 0, 0.6777);
+  border-radius: 5px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icons */
+  height: 32px; /* Match button height */
+}
+
+/* Icon styles */
+.switch-icons .mx-2 {
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Active and inactive icon styles */
+.active-icon {
+  color: black;
+}
+
+.inactive-icon {
+  color: gray;
+}
+
+/* Footer styling */
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-top: 1px solid #ddd;
+  position: fixed; /* Fixed footer at the bottom */
+  bottom: 0;
+  width: 100%;
+}
